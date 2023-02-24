@@ -9,14 +9,14 @@ export const MovieCard = ({ movie, onMovieClick }) => {
                 onMovieClick(movie);
             }}
         >
-            {movie.title}
+            {movie.Title}
         </div>
     );
 };
 
 //Here is where you define all the prop contraints for the moviecard
 
-MovieCard.PropTypes = {
+MovieCard.propTypes = {
     movie: PropTypes.shape({
         title: PropTypes.string.isRequired,
         genre: PropTypes.string.isRequired,
