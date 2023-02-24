@@ -10,17 +10,19 @@ export const MainView = () => {
         fetch("https://myflix-20778.herokuapp.com/movies")
             .then((response) => response.json())
             .then((data) => {
-                const moviesFromApi = data.docs.map((doc) => {
+                const movieFromApi = data.docs.map((doc) => {
                     return {
                         id: doc.key,
                         title: doc.title,
-                        director: doc.director_name?.(0)
+                        imagepath: img.imagepath,
+                        director: director_name,
                     };
                 });
-                setMovies(moviesFromApi);
+                console.log(movieFromApi),
+
+                    setMovies(movieFromApi);
             });
     }, []);
-
 
     const [selectedMovie, setSelectedMovie] = useState(null);
 
@@ -37,7 +39,7 @@ export const MainView = () => {
         <div>
             {movies.map((movie) => (
                 <MovieCard
-                    key={movie.id}
+                    key={movie._id}
                     movie={movie}
                     onMovieClick={(newSelectedMovie) => {
                         setSelectedMovie(newSelectedMovie);
