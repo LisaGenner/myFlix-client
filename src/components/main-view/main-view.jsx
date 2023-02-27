@@ -18,7 +18,7 @@ export const MainView = () => {
                         director: director_name,
                     };
                 });
-                console.log(movieFromApi),
+                console.log(data),
 
                     setMovies(movieFromApi);
             });
