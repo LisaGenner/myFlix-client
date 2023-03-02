@@ -5,7 +5,31 @@ export const SignupView = () => {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [birthday, setBirthday] = useState("");
-    const handleSubmit = (event) => { };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        const data = {
+            Username: username,
+            Password: password,
+            Email: email,
+            Birthday: birthday
+        };
+
+        fetch("https://myflix-20778.herokuapp.com/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        }).then((response) => {
+            if (response.ok) {
+                alert("Signup Successful");
+                window.location.reload();
+            } else {
+                alert("Signup failed");
+            }
+        });
+    };
 
     return (
         <form onSubmit={handleSubmit}>
