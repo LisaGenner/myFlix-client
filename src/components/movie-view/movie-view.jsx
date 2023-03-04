@@ -1,10 +1,10 @@
-import React from "react";
+import "./movie-view.scss";
 
 export const MovieView = ({ movie, onBackClick }) => {
     return (
         <div>
             <div>
-                <img src={movie.ImagePath} />
+                <img className="w-100" src={movie.ImagePath} />
             </div>
             <div>
                 <span>Title:</span>
@@ -22,11 +22,10 @@ export const MovieView = ({ movie, onBackClick }) => {
                 <span>Actors:</span>
                 <span>{movie.Actors}</span>
             </div>
-            {/* <div>
-                <span><Description:</span>
-                <span>{movie.Description.Name}</span>
-            </div> */}
-            <button onClick={onBackClick}>Back</button>
+            <button onClick={onBackClick} className="back-button"
+                style={{ cursor: "pointer" }}
+            >
+                Back</button>
         </div>
     );
 };
