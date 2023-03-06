@@ -1,7 +1,3 @@
-<<<<<<< Updated upstream
-=======
-// import React from "react";
->>>>>>> Stashed changes
 import "./movie-view.scss";
 
 export const MovieView = ({ movie, onBackClick }) => {
@@ -26,22 +22,15 @@ export const MovieView = ({ movie, onBackClick }) => {
                 <span>Actors:</span>
                 <span>{movie.Actors}</span>
             </div>
-<<<<<<< Updated upstream
-            <button onClick={onBackClick} className="back-button"
-                style={{ cursor: "pointer" }}
-            >
-                Back</button>
-=======
-            {/* <div>
-                <span><Description:</span>
+            <div>
+                <span>Description:</span>
                 <span>{movie.Description.Name}</span>
-            </div> */}
+            </div>
             <button onClick={onBackClick} className="back-button"
                 style={{ cursor: "pointer" }}
             >
                 Back
             </button>
->>>>>>> Stashed changes
         </div>
     );
 };
