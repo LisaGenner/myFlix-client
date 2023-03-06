@@ -1,4 +1,5 @@
 //Here you import the proptypes library
+import React from "react";
 import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 
