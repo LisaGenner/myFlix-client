@@ -18,9 +18,9 @@ import "./index.scss";
 // };
 
 const App = () => {
-    return( <Container>
+    return (<Container>
         <MainView />
-        </Container>
+    </Container>
     );
 };
 
