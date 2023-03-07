@@ -1,10 +1,11 @@
-import "./movie-view.scss";
+// import PropTypes from "prop-types";
+// import "./movie-view.scss";
 
 export const MovieView = ({ movie, onBackClick }) => {
     return (
         <div>
             <div>
-                <img className="w-100" src={movie.ImagePath} />
+            <img className="w-100" src={movie.ImagePath} />
             </div>
             <div>
                 <span>Title:</span>
@@ -34,3 +35,12 @@ export const MovieView = ({ movie, onBackClick }) => {
         </div>
     );
 };
+
+// MovieView.propTypes = {
+//     movie: PropTypes.shape({
+//         title: PropTypes.string.isRequired,
+//         image: PropTypes.string.isRequired,
+//         director: PropTypes.string.isRequired
+//     }).isRequired,
+//     onBackClick: PropTypes.func.isRequired
+// };

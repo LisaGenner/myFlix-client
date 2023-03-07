@@ -23,10 +23,10 @@ export const SignupView = () => {
             body: JSON.stringify(data),
             headers: {
                 "Content-Type": "application/json"
-            }
+            },
         }).then((response) => {
             if (response.ok) {
-                alert("Signup successful");
+                alert("Signup Successful");
                 window.location.reload();
             } else {
                 alert("Signup failed");
@@ -36,7 +36,7 @@ export const SignupView = () => {
 
     return (
         <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="FormUsername">
+            <Form.Group controlId="formUsername">
                 <Form.Label>Username:</Form.Label>
                 <Form.Control
                     type="text"
@@ -46,8 +46,7 @@ export const SignupView = () => {
                     minLength="3"
                 />
             </Form.Group>
-
-            <Form.Group controlId="FormPassword">
+            <Form.Group controlId="formPassword">
                 <Form.Label>Password:</Form.Label>
                 <Form.Control
                     type="password"
@@ -56,7 +55,7 @@ export const SignupView = () => {
                     required
                 />
             </Form.Group>
-            <Form.Group controlId="FormEmail">
+            <Form.Group controlId="formEmail">
                 <Form.Label>Email:</Form.Label>
                 <Form.Control
                     type="email"
@@ -65,7 +64,7 @@ export const SignupView = () => {
                     required
                 />
             </Form.Group>
-            <Form.Group controlId="FormBirthday">
+            <Form.Group controlId="Birthday">
                 <Form.Label>Birthday:</Form.Label>
                 <Form.Control
                     type="date"
