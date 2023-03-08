@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -8,13 +9,16 @@ export const LoginView = ({ onLoggedIn }) => {
     const [password, setPassword] = useState("");
 
 
+
     const handleSubmit = (event) => {
         // this prevents the default behavior of the form which is to reload the entire page
         event.preventDefault();
 
         const data = {
             Username: username,
+
             Password: password
+
         };
 
         fetch("https://myflix-20778.herokuapp.com/login", {
@@ -23,9 +27,11 @@ export const LoginView = ({ onLoggedIn }) => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(data)
+
         }).then((response) => response.json())
             .then((data) => {
                 console.log("Login response: ", data);
+
                 if (data.user) {
                     localStorage.setItem("user", JSON.stringify(data.user));
                     localStorage.setItem("token", data.token);
@@ -37,6 +43,7 @@ export const LoginView = ({ onLoggedIn }) => {
             .catch((e) => {
                 alert("Something went wrong");
             });
+
     };
     return (
         <Form onSubmit={handleSubmit}>
@@ -66,4 +73,5 @@ export const LoginView = ({ onLoggedIn }) => {
         </Form>
     );
 };
+
 
