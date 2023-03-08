@@ -3,12 +3,9 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-
 export const LoginView = ({ onLoggedIn }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-
-
 
     const handleSubmit = (event) => {
         // this prevents the default behavior of the form which is to reload the entire page
@@ -16,9 +13,7 @@ export const LoginView = ({ onLoggedIn }) => {
 
         const data = {
             Username: username,
-
             Password: password
-
         };
 
         fetch("https://myflix-20778.herokuapp.com/login", {
