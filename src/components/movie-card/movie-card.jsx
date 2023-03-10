@@ -12,7 +12,7 @@ export const MovieCard = ({ movie }) => {
             <Card.Body>
                 <Card.Title>{movie.title}</Card.Title>
                 <Card.Text>{movie.director}</Card.Text>
-                //<Link to={`/movies/${encodeURIComponent(movie._id)}`}>
+                <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
                     <Button variant="link">Open</Button>
                 </Link>
             </Card.Body>
@@ -22,11 +22,11 @@ export const MovieCard = ({ movie }) => {
 
 //Here is where you define all the prop contraints for the moviecard
 
-MovieCard.propTypes = {
-    movie: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        director: PropTypes.string.isRequired
-    })
-        .isRequired
-};
+// MovieCard.propTypes = {
+//     movie: PropTypes.shape({
+//         title: PropTypes.string.isRequired,
+//         genre: PropTypes.string.isRequired,
+//         director: PropTypes.string.isRequired
+//     })
+//         .isRequired
+// };
