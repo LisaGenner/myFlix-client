@@ -1,7 +1,10 @@
-import { useState } from "react";
-
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+import { useState } from 'react';
+import { Navigate, useNavigate } from 'react-router';
+import { Card, Col } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
 
 export const SignupView = () => {
@@ -9,6 +12,7 @@ export const SignupView = () => {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [birthday, setBirthday] = useState("");
+    const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -30,10 +34,13 @@ export const SignupView = () => {
             if (response.ok) {
                 alert("Signup Successful");
                 window.location.reload();
+                // need to send user to login viev
             } else {
-                alert("Signup failed");
+                alert('Signup failed');
             }
-        });
+        })
+            .catch((e) => console.log(e));
+        navigate('/login');
     };
 
     return (
