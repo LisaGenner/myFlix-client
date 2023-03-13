@@ -18,3 +18,10 @@ dist/index.html
 *.map
 dist/index.html
 dist/index.html
+*.txt
+.parcel-cache/7751b69edbc34cf1
+.parcel-cache/7c8c1750488d6dd0
+*.css
+dist/index.ce1d6491.css
+*.css
+dist/index.ce1d6491.css
