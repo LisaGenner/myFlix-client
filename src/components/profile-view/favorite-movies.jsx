@@ -3,7 +3,7 @@ import { Button, Col, Card, Link } from "react-bootstrap";
 import { ProfileView } from "../profile-view/profile-view";
 import { MovieCard } from "../movie-card/movie-card";
 
-export const FavMovies = ({ user, movies }) => {
+export const FavoriteMovies = ({ user, movies }) => {
     const storedToken = localStorage.getItem("token");
     const storedMovies = JSON.parse(localStorage.getItem("movies"))
     const storedUser = localStorage.getItem("user");
@@ -19,9 +19,8 @@ export const FavMovies = ({ user, movies }) => {
     const [allMovies] = useState(storedMovies ? storedMovies : movies);
     const [filteredMovies, setFilteredMovies] = useState([]);
 
-    // Show updated user on the profile
     const getUser = (token) => {
-        fetch(`https://movie-api-8cvs.onrender.com/profiles/${user.Username}`, {
+        fetch(`https://myflix-20778.herokuapp.com/movies/profiles/${user.Username}`, {
             method: "GET",
             headers: { Authorization: `Bearer ${token}` },
         }).then(response => response.json())
@@ -34,11 +33,11 @@ export const FavMovies = ({ user, movies }) => {
                 setFavoriteMovies(response.FavoriteMovies)
             })
     }
-    console.log("userFavMov", favoriteMovies)
+    console.log("user.FavoriteMovies", favoriteMovies)
 
     const favMovies = movies.filter((movie) => favoriteMovies.includes(movie.id));
 
-    console.log("favMovies", favMovies)
+    console.log("favoriteMovies", favoriteMovies)
 
     //Filter favorite movies for later display
     useEffect(() => {
@@ -55,15 +54,31 @@ export const FavMovies = ({ user, movies }) => {
 
     return (
         <>
-            <h4>Favorite movies:</h4>
-            {/* Display favorite movies */}
-            {favMovies.length === 0 ?
-                <span>No movies selected</span> : favMovies.map((movie) => (
-                    <Col className="mb-4" key={movie.id} xs={12} md={6} lg={3}>
-                        <MovieCard movie={movie} />
-                    </Col>
-                ))
-            }
+            <Row>
+                <Col xs={12}>
+                    <h4>Favorite Movies</h4>
+                </Col>
+            </Row>
+            <Row>
+                {favoriteMovies.map((movies) => {
+                    return (
+                        <Col xs={12} md={6} lg={3} key={movies._id}>
+                            <img src={movies.ImagePath} />
+                            <Link to={'/movies/${movies._id}'}>
+                                <h4>{movies.Title}</h4>
+                            </Link>
+                            <button variant="secondary" onClick={() => removeFavorite(movies._id)}>Remove from list</button>
+                        </Col>
+                    )
+                })
+                }
+            </Row>
         </>
     )
 }
+
+
+
+
+
+export default FavoriteMovies
