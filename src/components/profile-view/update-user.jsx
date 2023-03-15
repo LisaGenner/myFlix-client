@@ -1,10 +1,11 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import { Button, Container, Form, Row, Col, Card } from "react-bootstrap";
 
-export const UpdateForm = ({ user }) => {
+export const UpdateUser = ({ user }) => {
 
     const storedToken = localStorage.getItem("token");
-    const storedMovies = JSON.parse(localStorage.getItem("movies"))
+    const storedMovie = JSON.parse(localStorage.getItem("movies"))
     const storedUser = localStorage.getItem("user");
 
     const [token] = useState(storedToken ? storedToken : null);
@@ -23,6 +24,7 @@ export const UpdateForm = ({ user }) => {
             Email: email,
             Birthday: birthday
         };
+
         console.log(data)
         const updateUser = await fetch("https://myflix-20778.herokuapp.com/users/${user.Username}", {
             method: "PUT",
@@ -46,7 +48,6 @@ export const UpdateForm = ({ user }) => {
 
 
     const handleDeregister = () => {
-
         fetch("https://myflix-20778.herokuapp.com/users${user.Username}", {
             method: "DELETE",
             headers: {

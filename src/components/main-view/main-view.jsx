@@ -5,6 +5,7 @@ import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { ProfileView } from "../profile-view/profile-view";
+
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -15,8 +16,8 @@ export const MainView = () => {
     const [user, setUser] = useState(storedUser ? storedUser : null);
     const [token, setToken] = useState(storedToken ? storedToken : null);
     const [movies, setMovies] = useState([]);
+    const [searchInput, setSearchInput] = useState("");
 
-    // const [selectedMovie, setSelectedMovie] = useState(null);
 
     useEffect(() => {
         if (!token) {
@@ -44,6 +45,12 @@ export const MainView = () => {
             });
 
     }, [token]);
+
+    // Handle changes in the search input field
+    const handleSearchInput = (e) => {
+        setSearchInput(e.target.value);
+    };
+
 
     return (
         <BrowserRouter>
@@ -81,11 +88,8 @@ export const MainView = () => {
                                 ) : (
                                     <Col md={5}>
                                         <LoginView
-                                            onLoggedIn={(user, token) => {
-                                                setUser(user);
-                                                setToken(token);
-                                            }}
-                                        />
+                                            onLoggedIn={(user) => setUser(user)} />
+                                        setToken(token);
                                     </Col>
                                 )}
                             </>
@@ -102,7 +106,7 @@ export const MainView = () => {
                                     <Col>The list is empty</Col>
                                 ) : (
                                     <Col md={8}>
-                                        <MovieView movies={movies} username={user.Username} favoriteMovies={user.FavoriteMovies} />
+                                        <MovieView movies={movies} username={user.Username} favoriteMovies={user.FavoriteMovie} />
                                     </Col>
                                 )}
                             </>
@@ -134,17 +138,8 @@ export const MainView = () => {
                                     <>
                                         {movies.map((movie) => (
                                             <Col className="mb-5" key={movie.id} md={3}>
-                                                <MovieCard movie={movie}
-                                                    user={user}
-                                                    updateUserOnFav={(user) => {
-                                                        console.log('Update User called', user);
-                                                        setUser(user);
-                                                        localStorage.setItem(
-                                                            'user',
-                                                            JSON.stringify(user)
-                                                        );
-                                                    }}
-                                                />
+                                                <MovieCard movie={movie} />
+
                                             </Col>
                                         ))}
                                     </>

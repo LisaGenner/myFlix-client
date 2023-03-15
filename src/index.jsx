@@ -7,16 +7,6 @@ import Container from 'react-bootstrap/Container';
 import "./index.scss";
 
 
-//commented out this code to see if i can get movie cards to show in local host
-// Main component (will eventually use all the others)
-// const MyFlixApplication = () => {
-//     return (
-//         <div className="my-flix">
-//             <div>Good morning</div>
-//         </div>
-//     );
-// };
-
 const App = () => {
     return (<Container>
         <MainView />
