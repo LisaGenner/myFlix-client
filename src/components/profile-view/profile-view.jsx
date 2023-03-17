@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Form } from "react-bootstrap/Form";
 import { Button } from "react-bootstrap/Button";
 import { Container, Col, Row, Card } from "react-bootstrap";
-import { UserInfo } from "./user-info";
+import UserInfo from "./user-info";
 import { UpdateUser } from "./update-user";
 import { FavoriteMovie } from "./favorite-movies";
 import { Link } from "react-router-dom";
@@ -69,6 +69,7 @@ export const ProfileView = ({ user, movies }) => {
     //     getUser(token);
     // }, [])
 
+    {/* <div> UserInfo name={user.Username} email={user.Email}/> </div> */ }
     return (
 
         <Container>
@@ -78,8 +79,12 @@ export const ProfileView = ({ user, movies }) => {
                         <Card.Body>
                             <div>
                                 <h4>User Details</h4>
-                                <p>Username: {username}</p>
-                                <p>Email: {email}</p>
+                                <Col> <span>Username: {username}</span>
+                                    <span className='fw-bolder'>{user.Username}</span>
+                                </Col>
+                                <Col> <span>Email: {email}</span>
+                                    <span className='fw-bolder'>{user.Email}</span>
+                                </Col>
                             </div>
                         </Card.Body>
                     </Card>
