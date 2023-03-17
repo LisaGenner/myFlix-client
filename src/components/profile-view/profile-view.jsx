@@ -21,7 +21,7 @@ export const ProfileView = ({ user, movies }) => {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [birthday, setBirthday] = useState("");
-    const [FavoriteMovie, setFavoriteMovie] = useState([]);
+    // const [FavMovie, setFavMovie] = useState([]);
 
     const handleUpdate = async (event) => {
         event.preventDefault();
@@ -65,11 +65,12 @@ export const ProfileView = ({ user, movies }) => {
         console.log(data);
     };
 
-    useEffect(() => {
-        getUser(token);
-    }, [])
+    // useEffect(() => {
+    //     getUser(token);
+    // }, [])
 
     return (
+
         <Container>
             <Row className="mb-4">
                 <Col>
@@ -78,7 +79,6 @@ export const ProfileView = ({ user, movies }) => {
                             <div>
                                 <h4>User Details</h4>
                                 <p>Username: {username}</p>
-                                <p>Birthday: {birthday}</p>
                                 <p>Email: {email}</p>
                             </div>
                         </Card.Body>
@@ -93,7 +93,11 @@ export const ProfileView = ({ user, movies }) => {
                 </Col>
             </Row>
             <Row>
-                <FavoriteMovie user={user} movies={movies} />
+                <Col>
+                    <Card>
+                        {/* <Card.Body><FavoriteMovie /></Card.Body> */}
+                    </Card>
+                </Col>
             </Row>
         </Container>
     )
