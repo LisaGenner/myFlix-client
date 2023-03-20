@@ -3,61 +3,46 @@ import { Button, Col, Card, Link } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
 import { Link } from "react-router-dom";
 
-export const FavoriteMovie = ({ user, movies }) => {
-    const storedToken = localStorage.getItem("token");
-    const storedMovies = JSON.parse(localStorage.getItem("movies"))
-    const storedUser = localStorage.getItem("user");
-    const [token] = useState(storedToken ? storedToken : null);
-    const [favoriteMovie, setFavoriteMovie] = useState([]);
-
-
-
-    //new set movies code
-    const [allMovies] = useState(storedMovies ? storedMovies : movies);
-    const [filteredMovies, setFilteredMovies] = useState([]);
-
-    const getUser = (token) => {
-        fetch(`https://myflix-20778.herokuapp.com/movies/profiles/${user.Username}`, {
-            method: "GET",
-            headers: { Authorization: `Bearer ${token}` },
-        }).then(response => response.json())
-            .then((response) => {
-                setFavoriteMovie(response.FavoriteMovie)
-            })
-    }
-
-    const FavMovie = movies.filter((movie) => favoriteMovie.includes(movie._id));
-
-    // Filter favorite movies for later display
-    // useEffect(() => {
-    //     const newList = movies.filter((movie) => {
-    //         const hasMovieId = favoriteMovie.some((m) => movie.id === m);
-    //         if (hasMovieId) {
-    //             return movie
-    //         }
-    //     })
-    //     setFavoriteMovie(newList)
-    //     // getUser(token);
-    // }, [])
-
-
-    return (
-        <>
-            test
-            {/* <h4>Favorite Movies</h4>
-            {favoriteMovie.length === 0 ?
-
-                <span>No Movie Selected</span> : FavoriteMovie.map((movies) => (
-                    <Col xs={12} md={6} lg={3} key={movies._id}>
-                        <img src={movies.ImagePath} />
-                        <Link to={'/movies/{movies._id}'}>
-                            <h4>{movies.Title}</h4>
-                        </Link>
-                        <button variant="secondary" onClick={() => removeFavorite(movies._id)}>Remove from list</button>
-                        <MovieCard movie={movies} />
+export const FavoriteMovie = ({ storedUser, movies }) => {
+    // const storedToken = localStorage.getItem("token");
+    // const storedMovies = JSON.parse(localStorage.getItem("movies"))
+    // const storedUser = localStorage.getItem("user");
+    // const [token] = useState(storedToken ? storedToken : null);
+    // const [favoriteMovie, setFavoriteMovie] = useState([]);
+    const [user, setUser] = useState(storedUser ? storedUser : null);
+    // let favoriteMoviesList = movies.filter((m) =>
+    //     user.FavoriteMovie.includes(m.id)
+    // );
+    function FavoriteMovie(favoriteMoviesList) {
+        return (
+            <>
+                <Row>
+                    <Col xs={2}>
+                        <h4>Favorite Movies</h4>
                     </Col>
-                ))
-            } */}
-        </>
-    )
+                </Row>
+                <Row>
+                    {favoriteMoviesList.map((movie) => {
+                        return (
+                            <Col className='mb-5' key={movie.id} xs={12} sm={6} md={4} lg={3}>
+                                <img src={movies.ImagePath} />
+                                <Link to={'/movies/{movies._id}'}>
+                                    <h4>{movie.Title}</h4>
+                                </Link>
+                                <button variant="secondary" onClick={() => removeFav(movies._id)}>Remove from list</button>
+                            </Col>
+                        )
+                    })
+                    }
+
+                </Row >
+            </>
+
+        );
+    }
 }
+export default FavoriteMovie
+
+
+
+

@@ -1,6 +1,7 @@
 import react from "react";
+import { Container, Col, Row, Card } from "react-bootstrap";
 
-function UserInfo({ name, email }) {
+function UserInfo({ username, email }) {
     return (
         <Container>
             <Row className="mb-4">
@@ -8,9 +9,9 @@ function UserInfo({ name, email }) {
                     <Card>
                         <Card.Body>
                             <div>
-                                <h4>User Details</h4>
-                                <p>Username: {username}</p>
-                                <p>Email: {email}</p>
+                                <h4>Your Info</h4>
+                                <p>Name: <span className='fw-bolder'> {username}</span></p>
+                                <p>Email: <span className='fw-bolder'>{email}</span></p>
                             </div>
                         </Card.Body>
                     </Card>
@@ -20,7 +21,4 @@ function UserInfo({ name, email }) {
     )
 }
 
-
-
-
-export default UserInfo
+export default UserInfo;

@@ -45,12 +45,12 @@ export const MovieView = ({ movies }) => {
     );
 };
 
-// MovieCard.propTypes = {
-//     movie: PropTypes.shape({
-//         title: PropTypes.string.isRequired,
-//         image: PropTypes.string.isRequired,
-//         genre: PropTypes.string.isRequired,
-//         director: PropTypes.string.isRequired
-//     })
-//     .isRequired
-// };
+MovieCard.propTypes = {
+    movie: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired,
+        genre: PropTypes.string.isRequired,
+        director: PropTypes.string.isRequired
+    })
+        .isRequired
+};

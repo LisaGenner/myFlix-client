@@ -102,8 +102,10 @@ export const UpdateUser = ({ user }) => {
                     />
                 </Form.Group>
                 <Button type="submit" className="button-primary mt-3">Save Changes</Button>
+                &nbsp;  &nbsp;
+                <Button onClick={() => handleDeregister(user._id)} className="button-delete mt-3" type="submit" variant="danger" >Delete Account</Button>
             </Form>
-            <Button onClick={() => handleDeregister(user._id)} className="button-delete mt-3" type="submit" variant="danger" >Delete Account</Button>
+
         </>
     )
 }

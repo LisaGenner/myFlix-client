@@ -21,7 +21,7 @@ export const ProfileView = ({ user, movies }) => {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [birthday, setBirthday] = useState("");
-    // const [FavMovie, setFavMovie] = useState([]);
+    const [favoriteMovie, setFavoriteMovie] = useState([]);
 
     const handleUpdate = async (event) => {
         event.preventDefault();
@@ -31,6 +31,7 @@ export const ProfileView = ({ user, movies }) => {
             password: password,
             email: email,
             birthday: birthday,
+            FavoriteMovie: FavoriteMovie
         };
 
         const response = await fetch(
@@ -69,7 +70,6 @@ export const ProfileView = ({ user, movies }) => {
     //     getUser(token);
     // }, [])
 
-    {/* <div> UserInfo name={user.Username} email={user.Email}/> </div> */ }
     return (
 
         <Container>
@@ -77,30 +77,10 @@ export const ProfileView = ({ user, movies }) => {
                 <Col>
                     <Card>
                         <Card.Body>
-                            <div>
-                                <h4>User Details</h4>
-                                <Col> <span>Username: {username}</span>
-                                    <span className='fw-bolder'>{user.Username}</span>
-                                </Col>
-                                <Col> <span>Email: {email}</span>
-                                    <span className='fw-bolder'>{user.Email}</span>
-                                </Col>
-                            </div>
+                            <UserInfo username={user.Username} email={user.Email} />
+                            <UpdateUser user={user.Username} />
+                            <FavoriteMovie favoriteMoviesList={FavoriteMovie} storedUser={storedUser} />
                         </Card.Body>
-                    </Card>
-                </Col>
-                <Col >
-                    <Card>
-                        <Card.Body>
-                            <UpdateUser user={user} />
-                        </Card.Body>
-                    </Card>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <Card>
-                        {/* <Card.Body><FavoriteMovie /></Card.Body> */}
                     </Card>
                 </Col>
             </Row>

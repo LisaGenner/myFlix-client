@@ -89,7 +89,7 @@ export const MainView = () => {
                                     <Col md={5}>
                                         <LoginView
                                             onLoggedIn={(user) => setUser(user)} />
-                                        setToken(token);
+
                                     </Col>
                                 )}
                             </>
