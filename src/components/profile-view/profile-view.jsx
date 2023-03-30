@@ -9,30 +9,29 @@ import { FavoriteMovie } from "./favorite-movies";
 import { Link } from "react-router-dom";
 
 export const ProfileView = ({ user, movies }) => {
-
     const storedToken = localStorage.getItem("token");
     const storedMovies = JSON.parse(localStorage.getItem("movies"))
     const storedUser = localStorage.getItem("user");
-
-
     const [token] = useState(storedToken ? storedToken : null);
 
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [email, setEmail] = useState('');
-    const [birthday, setBirthday] = useState("");
+    //const [username, setUsername] = useState('');
+    //const [password, setPassword] = useState('');
+    //const [email, setEmail] = useState('');
+    //const [birthday, setBirthday] = useState("");
     const [favoriteMovie, setFavoriteMovie] = useState([]);
 
     const handleUpdate = async (event) => {
         event.preventDefault();
 
         const userData = {
-            username: username,
-            password: password,
-            email: email,
-            birthday: birthday,
+            // username: username,
+            // password: password,
+            // email: email,
+            // birthday: birthday,
             FavoriteMovie: FavoriteMovie
         };
+
+        let FavoriteMovieList = movies.filter(m => user.FavoriteMovies.includes(m._id))
 
         const response = await fetch(
             `https://myflix-20778.herokuapp.com/movies${user.username}`,
@@ -78,8 +77,19 @@ export const ProfileView = ({ user, movies }) => {
                     <Card>
                         <Card.Body>
                             <UserInfo username={user.Username} email={user.Email} />
+                            <div className="align-center mt-auto"></div>
+                        </Card.Body>
+                    </Card>
+                    <Card>
+                        <Card.Body>
+
                             <UpdateUser user={user.Username} />
-                            <FavoriteMovie favoriteMoviesList={FavoriteMovie} storedUser={storedUser} />
+                            <div className="align-right mt-auto"></div>
+                        </Card.Body>
+                    </Card>
+                    <Card>
+                        <Card.Body>
+                            <FavoriteMovie favoriteMoviesList={storedMovies} storedUser={storedUser} />
                         </Card.Body>
                     </Card>
                 </Col>

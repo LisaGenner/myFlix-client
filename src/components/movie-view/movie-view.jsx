@@ -14,7 +14,7 @@ export const MovieView = ({ movies }) => {
     return (
         <div>
             <div>
-                <img className="w-100" src={movie.ImagePath} />
+                <img className="w-50" src={movie.ImagePath} />
             </div>
             <div>
                 <span>Title:</span>
@@ -47,10 +47,10 @@ export const MovieView = ({ movies }) => {
 
 MovieCard.propTypes = {
     movie: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        director: PropTypes.string.isRequired
+        Title: PropTypes.string.isRequired,
+        ImagePath: PropTypes.string.isRequired,
+        Genre: PropTypes.string.isRequired,
+        Director: PropTypes.string.isRequired
     })
         .isRequired
 };

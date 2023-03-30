@@ -1,3 +1,4 @@
+import { PropTypes } from "prop-types";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
@@ -54,3 +55,5 @@ export const NavigationBar = ({ user, onLoggedOut, handleSearchInput }) => {
     </Navbar>
   );
 };
+
+
