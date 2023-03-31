@@ -37,6 +37,7 @@ export const MainView = () => {
                         imagepath: doc.ImagePath,
                         director: doc.Director.Name,
                         actors: actors,
+                        genre: doc.genre
                     };
                 });
 
@@ -153,3 +154,5 @@ export const MainView = () => {
         </BrowserRouter>
     );
 };
+
+// export {MainView};

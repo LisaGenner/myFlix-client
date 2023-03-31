@@ -8,30 +8,33 @@ import { UpdateUser } from "./update-user";
 import { FavoriteMovie } from "./favorite-movies";
 import { Link } from "react-router-dom";
 
-export const ProfileView = ({ user, movies }) => {
+
+
+export const ProfileView = ({ user, movies, favoriteMoviesList }) => {
     const storedToken = localStorage.getItem("token");
     const storedMovies = JSON.parse(localStorage.getItem("movies"))
     const storedUser = localStorage.getItem("user");
     const [token] = useState(storedToken ? storedToken : null);
 
+    // let FavoriteMovieList = movies.filter(movies => user.FavoriteMovies.includes(movies._id))
+
     //const [username, setUsername] = useState('');
     //const [password, setPassword] = useState('');
     //const [email, setEmail] = useState('');
     //const [birthday, setBirthday] = useState("");
-    const [favoriteMovie, setFavoriteMovie] = useState([]);
+    // const [favoriteMovie, setFavoriteMovie] = useState([]);
 
     const handleUpdate = async (event) => {
         event.preventDefault();
 
-        const userData = {
-            // username: username,
-            // password: password,
-            // email: email,
-            // birthday: birthday,
-            FavoriteMovie: FavoriteMovie
-        };
+        // const userData = {
+        //     username: username,
+        //     password: password,
+        //     email: email,
+        //     birthday: birthday,
+        //     FavoriteMovie: FavoriteMovie
+        // };
 
-        let FavoriteMovieList = movies.filter(m => user.FavoriteMovies.includes(m._id))
 
         const response = await fetch(
             `https://myflix-20778.herokuapp.com/movies${user.username}`,
@@ -90,6 +93,7 @@ export const ProfileView = ({ user, movies }) => {
                     <Card>
                         <Card.Body>
                             <FavoriteMovie favoriteMoviesList={storedMovies} storedUser={storedUser} />
+
                         </Card.Body>
                     </Card>
                 </Col>
@@ -97,3 +101,9 @@ export const ProfileView = ({ user, movies }) => {
         </Container>
     )
 }
+
+
+
+
+
+

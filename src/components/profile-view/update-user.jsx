@@ -101,7 +101,7 @@ export const UpdateUser = ({ user }) => {
                         onChange={e => setBirthday(e.target.value)}
                     />
                 </Form.Group>
-                <Button type="submit" className="button-primary mt-3">Save Changes</Button>
+                <Button type="submit" className="button-primary mt-3">Update</Button>
                 &nbsp;  &nbsp;
                 {/* <Button onClick={() => handleDeregister(user._id)} className="button-delete mt-3" type="submit" variant="danger" >Delete Account</Button> */}
             </Form>

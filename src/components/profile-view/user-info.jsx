@@ -10,7 +10,7 @@ function UserInfo({ username, email }) {
                     <Card>
                         <Card.Body>
                             <div>
-                                <h4>Your Info</h4>
+                                <h4>Your Information</h4>
                                 <p>Name: <span className='fw-bolder'> {username}</span></p>
                                 <p>Email: <span className='fw-bolder'>{email}</span></p>
                                 <Button onClick={() => handleDeregister(user._id)} className="button-delete mt-3" type="submit" variant="danger" >Delete Account</Button>
