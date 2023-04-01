@@ -5,10 +5,11 @@ import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { ProfileView } from "../profile-view/profile-view";
-
+import Spinner from 'react-bootstrap/Spinner';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+//import { toast } from 'react-toastify';
 
 export const MainView = () => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -17,7 +18,128 @@ export const MainView = () => {
     const [token, setToken] = useState(storedToken ? storedToken : null);
     const [movies, setMovies] = useState([]);
     const [searchInput, setSearchInput] = useState("");
+    const [filteredMovies, setFilteredMovies] = useState([]);
+    const [userQuery, setUserQuery] = useState('');
+    console.log(user)
 
+    const showSpinner = function () {
+        return (
+            <Col className="spinner-wrapper">
+                <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </Spinner>
+            </Col>
+        );
+    };
+
+    // Logic to render filteredMovies list
+    // Logic to render filteredMovies list
+
+    const onSearch = function (searchInput) {
+        setUserQuery(searchInput);
+    };
+
+
+    useEffect(
+        function () {
+            if (!userQuery) {
+                setFilteredMovies([]);
+            } else {
+                let searchResult = movies.filter(function (movie) {
+                    const movieLowerCase = movie.Title.toLowerCase();
+                    const directorLowerCase = movie.Director.Name.toLowerCase();
+                    const genreLowerCase = movie.Genre.Name.toLowerCase();
+                    const userQueryLowerCase = userQuery.toLowerCase();
+
+                    return (
+                        movieLowerCase.includes(userQueryLowerCase) ||
+                        directorLowerCase.includes(userQueryLowerCase) ||
+                        genreLowerCase.includes(userQueryLowerCase)
+                    );
+                });
+                setFilteredMovies(searchResult);
+            }
+        },
+        [movies, userQuery]
+    );
+
+    // Logic to manage FavoriteMovies list (needed in both ProfileView and MovieCard)
+    const addMovie = function (movieId) {
+        fetch(
+            `https://myflix-20778.herokuapp.com/movies/users/${user.Username}/FavoriteMovie/${movieId}`,
+            {
+                method: 'POST',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        )
+            .then(function (response) {
+                if (response.status === 401) {
+                    throw new Error(
+                        "Sorry, you're not authorized to access this resource. "
+                    );
+                } else if (response.status === 409) {
+                    throw new Error('You already added this movie to the list.');
+                } else if (response.ok) {
+                    return response.json();
+                }
+            })
+            .then(function (updatedUser) {
+                toast.success('Movie has been added to your Favorite Movies.');
+                setUser(updatedUser);
+            })
+            .catch(function (error) {
+                // if (error.message) {
+                //     toast.error(error.message);
+                // } else {
+                //     toast.error(
+                //         'An error occurred while trying to add movie. Please try again later.'
+                //     );
+                // }
+                console.error('An error occurred:' + error);
+            });
+    };
+    const removeMovie = function (movieId) {
+        fetch(
+            `myflix-20778.herokuapp.com/movies/users/${user.Username}/FavoriteMovie/${movieId}`,
+            {
+                method: 'DELETE',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        )
+            .then(function (response) {
+                if (response.status === 401) {
+                    throw new Error(
+                        "Sorry, you're not authorized to access this resource. "
+                    );
+                } else if (response.ok) {
+                    return response.json();
+                }
+            })
+            .then(function (updatedUser) {
+                toast.success('Movie has been removed from your Favorite Movies.');
+                setUser(updatedUser);
+            })
+            .catch(function (error) {
+                if (error.message) {
+                    toast.error(error.message);
+                } else {
+                    toast.error(
+                        'An error occurred while trying to delete. Please try again later.'
+                    );
+                }
+                console.error('An error occurred:' + error);
+            });
+    };
+    // To be run whenever user logs out (or is logged out)
+    const onLoggedOut = function () {
+        setUser(null);
+        setToken(null);
+        localStorage.clear();
+    };
 
     useEffect(() => {
         if (!token) {
@@ -104,15 +226,21 @@ export const MainView = () => {
                                 {!user ? (
                                     <Navigate to="/login" replace />
                                 ) : movies.length === 0 ? (
-                                    <Col>The list is empty</Col>
+                                    <>{showSpinner()}</>
                                 ) : (
                                     <Col md={8}>
-                                        <MovieView movies={movies} username={user.Username} favoriteMovies={user.FavoriteMovie} />
+                                        <MovieView
+                                            addMovie={addMovie}
+                                            movies={movies}
+                                            removeMovie={removeMovie}
+                                            username={user.Username}
+                                            FavoriteMovies={user.FavoriteMovies} />
                                     </Col>
                                 )}
                             </>
                         }
                     />
+
                     <Route
                         path="/profile"
                         element={
@@ -121,7 +249,13 @@ export const MainView = () => {
                                     <Navigate to="/login" replace />
                                 ) : (
                                     <Col>
-                                        <ProfileView user={user} movies={movies} />
+                                        <ProfileView
+                                            user={user}
+                                            movies={movies}
+                                            onLoggedOut={onLoggedOut}
+                                            removeMovie={removeMovie}
+                                            setUser={setUser}
+                                            token={token} />
                                     </Col>
                                 )}
                             </>
@@ -155,4 +289,3 @@ export const MainView = () => {
     );
 };
 
-// export {MainView};

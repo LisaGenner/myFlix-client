@@ -1,8 +1,10 @@
-
 import { useState } from "react";
+import { PropTypes } from 'prop-types';
+import { Link } from 'react-router-dom';
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-
+import Card from 'react-bootstrap/Card';
+import { ButtonSpinner } from '../button-spinner/button-spinner.jsx';
 
 export const LoginView = ({ onLoggedIn }) => {
     const [username, setUsername] = useState("");
@@ -42,32 +44,57 @@ export const LoginView = ({ onLoggedIn }) => {
 
     };
     return (
-        <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formUsername">
-                <Form.Label>Username:</Form.Label>
-                <Form.Control
-                    type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                    minLength="3"
-                />
-            </Form.Group>
+        <Card className="card mb-4">
+            <Card.Body>
+                <Card.Title className="mb-4">Login</Card.Title>
 
-            <Form.Group controlId="formPassword">
-                <Form.Label>Password:</Form.Label>
-                <Form.Control
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-            </Form.Group>
-            <Button variant="primary" type="submit">
-                Submit
-            </Button>
-        </Form>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group controlId="formUsername">
+                        <Form.Label>Username:</Form.Label>
+                        <Form.Control
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            required
+                            minLength="3"
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="formPassword">
+                        <Form.Label>Password:</Form.Label>
+                        <Form.Control
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </Form.Group>
+                    <div className="align-right mt-3">
+                        {loading ? (
+                            <Button
+                                className="spinner-button"
+                                type="button"
+                                variant="primary"
+                            >
+                                <ButtonSpinner />
+                            </Button>
+                        ) : (
+                            <Button
+                                className="spinner-button"
+                                type="submit"
+                                variant="primary"
+                            >
+                                Submit
+                            </Button>
+                        )}
+                    </div>
+                </Form>
+                <Link to="/signup">Not registered yet? Sign up here.</Link>
+            </Card.Body>
+        </Card>
     );
-};
+}
+
+
 
 

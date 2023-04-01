@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 
 //The movieCard function component
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, isFavMovieCard, removeMovie }) => {
     return (
         <Card className="h-100">
             <Card.Img variant="top" src={movie.ImagePath} />
@@ -15,6 +15,23 @@ const MovieCard = ({ movie }) => {
                 <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
                     <Button variant="link">More Details</Button>
                 </Link>
+                {isFavMovieCard ? (
+                    <div className="align-right">
+                        <Button
+                            className="btn-secondary"
+                            onClick={function (event) {
+                                event.preventDefault();
+                                removeMovie(movie._id);
+                            }}
+                            size="sm"
+                            variant="secondary"
+                        >
+                            Remove
+                        </Button>
+                    </div>
+                ) : (
+                    false
+                )}
             </Card.Body>
         </Card>
     );
