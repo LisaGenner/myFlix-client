@@ -70,7 +70,7 @@ export const LoginView = ({ onLoggedIn }) => {
                         />
                     </Form.Group>
                     <div className="align-right mt-3">
-                        {loading ? (
+                        {/* {loading ? (
                             <Button
                                 className="spinner-button"
                                 type="button"
@@ -78,15 +78,15 @@ export const LoginView = ({ onLoggedIn }) => {
                             >
                                 <ButtonSpinner />
                             </Button>
-                        ) : (
-                            <Button
-                                className="spinner-button"
-                                type="submit"
-                                variant="primary"
-                            >
-                                Submit
-                            </Button>
-                        )}
+                        ) : ( */}
+                        <Button
+                            className="spinner-button"
+                            type="submit"
+                            variant="primary"
+                        >
+                            Submit
+                        </Button>
+                        {/* )} */}
                     </div>
                 </Form>
                 <Link to="/signup">Not registered yet? Sign up here.</Link>

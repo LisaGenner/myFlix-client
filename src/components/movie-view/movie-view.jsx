@@ -77,15 +77,15 @@ export const MovieView = ({ addMovie, movies, removeMovie, FavoriteMovies, handl
     );
 };
 
-MovieView.propTypes = {
-    addMovie: PropTypes.func.isRequired,
-    movie: PropTypes.shape({
-        Title: PropTypes.string.isRequired,
-        ImagePath: PropTypes.string.isRequired,
-        Genre: PropTypes.string.isRequired,
-        Director: PropTypes.string.isRequired
-    })
-        .isRequired,
-    removeMovie: PropTypes.func.isRequired,
-    favoriteMovies: PropTypes.arrayOf(PropTypes.string).isRequired,
-};
+// MovieView.propTypes = {
+//     addMovie: PropTypes.func.isRequired,
+//     movie: PropTypes.shape({
+//         Title: PropTypes.string.isRequired,
+//         ImagePath: PropTypes.string.isRequired,
+//         Genre: PropTypes.string.isRequired,
+//         Director: PropTypes.string.isRequired
+//     })
+//         .isRequired,
+//     removeMovie: PropTypes.func.isRequired,
+//     favoriteMovies: PropTypes.arrayOf(PropTypes.string).isRequired,
+// };

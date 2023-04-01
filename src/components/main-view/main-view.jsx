@@ -66,7 +66,8 @@ export const MainView = () => {
     // Logic to manage FavoriteMovies list (needed in both ProfileView and MovieCard)
     const addMovie = function (movieId) {
         fetch(
-            `https://myflix-20778.herokuapp.com/movies/users/${user.Username}/FavoriteMovie/${movieId}`,
+            // http://localhost:5500/users/Brandy/movies/63d00c368356c90ea919014f
+            `https://myflix-20778.herokuapp.com/users/${user.Username}/movies/${movieId}`,
             {
                 method: 'POST',
                 headers: {
