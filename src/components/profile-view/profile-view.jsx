@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 
 
-export const ProfileView = ({ user, movies, FavoriteMovies }) => {
+export const ProfileView = ({ user, movies, FavoriteMovies, removeMovie }) => {
     const storedToken = localStorage.getItem("token");
     const storedMovies = JSON.parse(localStorage.getItem("movies"))
     const storedUser = localStorage.getItem("user");
@@ -92,7 +92,7 @@ export const ProfileView = ({ user, movies, FavoriteMovies }) => {
                     </Card>
                     <Card>
                         <Card.Body>
-                            {/* <FavoriteMovie favoriteMoviesList={storedMovies} storedUser={storedUser} removeMovie={removeMovie} /> */}
+                            <FavoriteMovie favoriteMoviesList={storedMovies} movies={storedMovies} storedUser={storedUser} removeMovie={removeMovie} />
 
                         </Card.Body>
                     </Card>

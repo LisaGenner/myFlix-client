@@ -18,15 +18,14 @@ export const FavoriteMovie = ({ movies, storedUser, favoriteMoviesList, removeMo
     const [allMovies] = useState(storedMovies ? storedMovies : movies);
     const [filteredMovies, setFilteredMovies] = useState([]);
 
+    console.log(movies)
     console.log(favoriteMoviesList)
+    console.log(user)
 
+    let FavoriteMovies = movies.filter(function (movie) {
 
-    //    function  FavoriteMovie({ movies }) {
-    //         let favoriteMoviesList = movies.filter((movie) =>
-    //             user.FavoriteMovies.includes(movie._id)
-    //         );
-    let FavoriteMovies = movies.filter(function (movies) {
-        return user.FavoriteMovies.includes(movies._id);
+        return favoriteMoviesList.includes(movie._id);
+
     });
 
     return (
@@ -39,14 +38,12 @@ export const FavoriteMovie = ({ movies, storedUser, favoriteMoviesList, removeMo
                             <h4>Favorite Movies</h4>
                         </Col>
                     </Row>
+
                     <Row>
-                        <FavoriteMovies movies={movies} removeMovie={removeMovie} user={user} />
-                    </Row>
-                    <Row>
-                        {favoriteMoviesList.map(({ movie, removeMovie }) => {
+                        {favoriteMoviesList.map((movie) => {
                             return (
                                 <Col xs={6} sm={4} md={2} lg={3} key={movie._id}>
-                                    <img src={movie.ImagePath} />
+                                    <img src={movie.imagepath} />
                                     <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
                                         <h4>{movie.Title}</h4>
                                     </Link>
