@@ -14,7 +14,7 @@ export const ProfileView = ({ user, movies, FavoriteMovies, removeMovie }) => {
     const storedToken = localStorage.getItem("token");
     const storedMovies = JSON.parse(localStorage.getItem("movies"))
     const storedUser = localStorage.getItem("user");
-        const [token] = useState(storedToken ? storedToken : null);
+    const [token] = useState(storedToken ? storedToken : null);
 
     // let FavoriteMovieList = movies.filter(movies => user.FavoriteMovies.includes(movies._id))
 
@@ -98,10 +98,21 @@ export const ProfileView = ({ user, movies, FavoriteMovies, removeMovie }) => {
                     </Card>
                 </Col>
             </Row>
+            <Row>
+                <Card>
+                    <Card.Body>
+
+                        <Col xs={12}>
+                            <h4>Favorite Movies</h4>
+                        </Col>
+                    </Card.Body>
+                </Card>
+            </Row>
         </Container>
+
     )
 }
-// export { ProfileView };
+
 
 
 

@@ -22,57 +22,31 @@ export const FavoriteMovie = ({ movies, storedUser, favoriteMoviesList, removeMo
     console.log(favoriteMoviesList)
     console.log(user)
 
-    let FavoriteMovies = movies.filter(function (movie) {
+    // let FavoriteMovies = movies.filter(function (movie) {
+    //     return favoriteMoviesList.includes(movie._id);
+    // });
 
-        return favoriteMoviesList.includes(movie._id);
+    let printFavoriteMovies;
 
-    });
+    if (favoriteMovies.length === 0) {
+        printFavoriteMovies = (
+            <Col className="mt-4">You have not added any Favorite Movies yet.</Col>
+        );
+    } else {
 
-    return (
+        printFavoriteMovies = favoriteMovies.map(function (movie) {
+            return (
+                <Col xs={6} sm={4} md={2} lg={3} key={movie._id}>
+                    <img src={movie.imagepath} />
+                    <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
+                        <h4>{movie.Title}</h4>
+                    </Link>
+                    <Button variant="secondary" onClick={() => removeFav(movie._id)}>Remove from list</Button>
+                </Col>
 
-        <Container>
-            <Card>
-                <Card.Body>
-                    <Row>
-                        <Col xs={12}>
-                            <h4>Favorite Movies</h4>
-                        </Col>
-                    </Row>
-
-                    <Row>
-                        {favoriteMoviesList.map((movie) => {
-                            return (
-                                <Col xs={6} sm={4} md={2} lg={3} key={movie._id}>
-                                    <img src={movie.imagepath} />
-                                    <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
-                                        <h4>{movie.Title}</h4>
-                                    </Link>
-                                    <Button variant="secondary" onClick={() => removeFav(movie._id)}>Remove from list</Button>
-                                </Col>
-                            )
-                        })
-                        }
-                    </Row >
-                </Card.Body>
-            </Card>
-        </Container>
-    )
+            );
+        });
+    }
+    return <>{printFavoriteMovies}</>;
 }
-
-//export FavoriteMovie
-
-// FavoriteMovie.propTypes = {
-//     movie: PropTypes.shape({
-//         _id: PropTypes.string.isRequired,
-//         Title: PropTypes.string,
-//         Genre: PropTypes.string,
-//         Director: PropTypes.string,
-//         Actors: PropTypes.string,
-//         Description: PropTypes.string,
-//         ImagePath: PropTypes.string.isRequired,
-//         FavoriteMovie: PropTypes.string.isRequired,
-//     })
-//         .isRequired
-// };
-
 
