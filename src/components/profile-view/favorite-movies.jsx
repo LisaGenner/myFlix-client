@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 
 
 export const FavoriteMovie = ({ movies, storedUser, favoriteMoviesList, removeMovie }) => {
+
     const storedToken = localStorage.getItem("token");
     const storedMovies = JSON.parse(localStorage.getItem("movies"))
     // const storedUser = localStorage.getItem("user");
@@ -15,26 +16,27 @@ export const FavoriteMovie = ({ movies, storedUser, favoriteMoviesList, removeMo
     const [favoriteMovies, setFavoriteMovie] = useState([]);
     const [user, setUser] = useState(storedUser ? storedUser : null);
 
-    const [allMovies] = useState(storedMovies ? storedMovies : movies);
-    const [filteredMovies, setFilteredMovies] = useState([]);
+    // const [allMovies] = useState(storedMovies ? storedMovies : movies);
+    // const [filteredMovies, setFilteredMovies] = useState([]);
 
     console.log(movies)
     console.log(favoriteMoviesList)
     console.log(user)
 
-    // let FavoriteMovies = movies.filter(function (movie) {
-    //     return favoriteMoviesList.includes(movie._id);
+    //const favoriteMovies = movies.filter((movie) => favoriteMoviesList.includes(movie.id));
+    // let FavoriteMovie = movies.filter(function (movie) {
+    //     return user.FavoriteMovies.includes(movie._id);
     // });
 
-    let printFavoriteMovies;
+    let printFavoriteMovie;
 
     if (favoriteMovies.length === 0) {
-        printFavoriteMovies = (
+        printFavoriteMovie = (
             <Col className="mt-4">You have not added any Favorite Movies yet.</Col>
         );
     } else {
 
-        printFavoriteMovies = favoriteMovies.map(function (movie) {
+        printFavoriteMovie = favoriteMovies.map(function (movie) {
             return (
                 <Col xs={6} sm={4} md={2} lg={3} key={movie._id}>
                     <img src={movie.imagepath} />
@@ -47,6 +49,6 @@ export const FavoriteMovie = ({ movies, storedUser, favoriteMoviesList, removeMo
             );
         });
     }
-    return <>{printFavoriteMovies}</>;
+    return <>{printFavoriteMovie}</>;
 }
 

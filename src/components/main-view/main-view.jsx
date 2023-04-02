@@ -9,7 +9,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-//import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 export const MainView = () => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -103,7 +103,7 @@ export const MainView = () => {
     };
     const removeMovie = function (movieId) {
         fetch(
-            `myflix-20778.herokuapp.com/movies/users/${user.Username}/FavoriteMovie/${movieId}`,
+            `myflix-20778.herokuapp.com/movies/users/${user.Username}/movies/${movieId}`,
             {
                 method: 'DELETE',
                 headers: {
@@ -213,7 +213,6 @@ export const MainView = () => {
                                     <Col md={5}>
                                         <LoginView
                                             onLoggedIn={(user) => setUser(user)} />
-
                                     </Col>
                                 )}
                             </>

@@ -16,13 +16,13 @@ export const ProfileView = ({ user, movies, FavoriteMovies, removeMovie }) => {
     const storedUser = localStorage.getItem("user");
     const [token] = useState(storedToken ? storedToken : null);
 
-    // let FavoriteMovieList = movies.filter(movies => user.FavoriteMovies.includes(movies._id))
+    let FavoriteMovieList = movies.filter(movies => user.FavoriteMovies.includes(movies._id))
 
     //const [username, setUsername] = useState('');
     //const [password, setPassword] = useState('');
     //const [email, setEmail] = useState('');
     //const [birthday, setBirthday] = useState("");
-    // const [favoriteMovie, setFavoriteMovies] = useState([]);
+    const [favoriteMovie, setFavoriteMovies] = useState([]);
 
     const handleUpdate = async (event) => {
         event.preventDefault();

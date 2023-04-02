@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from 'react-bootstrap/Card';
 import { ButtonSpinner } from '../button-spinner/button-spinner.jsx';
+import { toast } from 'react-toastify';
 
 export const LoginView = ({ onLoggedIn }) => {
     const [username, setUsername] = useState("");
