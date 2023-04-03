@@ -48,7 +48,6 @@ export const UpdateUser = ({ user }) => {
         }
     };
 
-
     const handleDeregister = () => {
         fetch("https://myflix-20778.herokuapp.com/users${user.Username}", {
             method: "DELETE",

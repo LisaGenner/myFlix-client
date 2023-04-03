@@ -7,9 +7,9 @@ import "./navigation-bar.scss";
 export const NavigationBar = ({ user, onLoggedOut, handleSearchInput }) => {
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar classname="navbar" collapseOnSelect expand="md" sticky="top">
       <Container>
-        <Navbar.Brand as={Link} to="/">
+        <Navbar.Brand as={Link} to="/" classname="logo">
           MyFlix
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -55,5 +55,3 @@ export const NavigationBar = ({ user, onLoggedOut, handleSearchInput }) => {
     </Navbar>
   );
 };
-
-

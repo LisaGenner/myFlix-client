@@ -30,16 +30,16 @@ export const LoginView = ({ onLoggedIn }) => {
             body: JSON.stringify(data)
 
         })    // Extracts JWT from response content in JSON format
-      .then(function (response) {
-        setLoading(false);
-        return response.json();
-      })
-      .then(function (data) {
-        if (data.message === 'Incorrect username.') {
-          throw new Error(
-            'No account with that username. Please try again or sign up with a new account.'
-          );
-        }
+            .then(function (response) {
+                setLoading(false);
+                return response.json();
+            })
+            .then(function (data) {
+                if (data.message === 'Incorrect username.') {
+                    throw new Error(
+                        'No account with that username. Please try again or sign up with a new account.'
+                    );
+                }
                 if (data.user) {
                     localStorage.setItem("user", JSON.stringify(data.user));
                     localStorage.setItem("token", data.token);
@@ -89,14 +89,14 @@ export const LoginView = ({ onLoggedIn }) => {
                                 <ButtonSpinner />
                             </Button>
                         ) : (
-                        <Button
-                            className="spinner-button"
-                            type="submit"
-                            variant="primary"
-                        >
-                            Submit
-                        </Button>
-                         )} 
+                            <Button
+                                className="spinner-button"
+                                type="submit"
+                                variant="primary"
+                            >
+                                Submit
+                            </Button>
+                        )}
                     </div>
                 </Form>
                 <Link to="/signup">Not registered yet? Sign up here.</Link>

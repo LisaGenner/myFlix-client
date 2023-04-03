@@ -39,7 +39,6 @@ export const MainView = () => {
         setUserQuery(searchInput);
     };
 
-
     useEffect(
         function () {
             if (!userQuery) {
@@ -66,7 +65,6 @@ export const MainView = () => {
     // Logic to manage FavoriteMovies list (needed in both ProfileView and MovieCard)
     const addMovie = function (movieId) {
         fetch(
-            // http://localhost:5500/users/Brandy/movies/63d00c368356c90ea919014f
             `https://myflix-20778.herokuapp.com/users/${user.Username}/movies/${movieId}`,
             {
                 method: 'POST',
@@ -102,8 +100,10 @@ export const MainView = () => {
             });
     };
     const removeMovie = function (movieId) {
+        console.log(movieId)
         fetch(
-            `myflix-20778.herokuapp.com/movies/users/${user.Username}/movies/${movieId}`,
+            `https://myflix-20778.herokuapp.com/users/${user.Username}/movies/${movieId}`,
+
             {
                 method: 'DELETE',
                 headers: {
@@ -117,7 +117,15 @@ export const MainView = () => {
                         "Sorry, you're not authorized to access this resource. "
                     );
                 } else if (response.ok) {
-                    return response.json();
+                    // get all the movies from local storage then remove the movie id that is coming up in the response.  then update local storag
+                    const storedUser = JSON.parse(localStorage.getItem("user"));
+                    console.log(storedUser.FavoriteMovies)
+                    // const updatedMovieList = storedUser.filter((favMov) => {
+                    //     console.log(favMov)
+                    //     favMov._id !== movieId
+                    // });
+                    // console.log(updatedMovieList);
+                    // return response.json();
                 }
             })
             .then(function (updatedUser) {
@@ -152,8 +160,8 @@ export const MainView = () => {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then((response) => response.json())
-            
-            
+
+
             .then((data) => {
 
                 const moviesFromApi = data.map((doc) => {
@@ -171,15 +179,12 @@ export const MainView = () => {
                 setMovies(data);
                 localStorage.setItem("movies", JSON.stringify(moviesFromApi))
             });
-
     }, [token]);
 
     // Handle changes in the search input field
     const handleSearchInput = (e) => {
         setSearchInput(e.target.value);
     };
-
-
     return (
         <BrowserRouter>
             <NavigationBar
@@ -222,7 +227,6 @@ export const MainView = () => {
                             </>
                         }
                     />
-
                     <Route
                         path="/movies/:movieId"
                         element={
@@ -244,7 +248,6 @@ export const MainView = () => {
                             </>
                         }
                     />
-
                     <Route
                         path="/profile"
                         element={
@@ -278,7 +281,6 @@ export const MainView = () => {
                                         {movies.map((movie) => (
                                             <Col className="mb-5" key={movie.id} md={3}>
                                                 <MovieCard movie={movie} />
-
                                             </Col>
                                         ))}
                                     </>
@@ -288,7 +290,6 @@ export const MainView = () => {
                     />
                 </Routes>
             </Row>
-
         </BrowserRouter>
     );
 };

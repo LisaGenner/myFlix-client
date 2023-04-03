@@ -1,16 +1,22 @@
-body {
-    margin: 0;
+$primary: black;
+$accent: #c6c2b6;
+$primary-darker: #1d2d37;
+
+.navbar {
+  background-color: $accent;
 }
 
-.nav {
-    background-color: rgb(245, 245, 245);
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+a.logo,
+a.logo:visited {
+  color: $primary;
+  font-weight: bold;
 }
 
-.site-title {
-    color:white;
+a.logo:hover,
+a.logo:active {
+  color: $primary-darker;
 }
 
+a.logout-link {
+  color: $primary;
+}

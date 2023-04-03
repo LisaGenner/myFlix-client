@@ -61,7 +61,7 @@ export const MovieView = ({ addMovie, movies, removeMovie, FavoriteMovies, handl
                     inactiveThumbColor="#ecfeff"
                     inactiveTrackFillColor="#FFEECA"
                     inactiveTrackStrokeColor="#A78D5C"
-                    //checked={isLiked}
+                    checked={isLiked}
                     onChange={function (event) {
                         event.preventDefault();
                         handleToggle(isLiked, movieId);

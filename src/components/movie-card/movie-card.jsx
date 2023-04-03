@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-
 //The movieCard function component
 const MovieCard = ({ movie, isFavMovieCard, removeMovie }) => {
     return (
