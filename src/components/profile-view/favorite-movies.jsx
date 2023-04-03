@@ -16,17 +16,35 @@ export const FavoriteMovie = ({ movies, storedUser, favoriteMoviesList, removeMo
     const [favoriteMovies, setFavoriteMovie] = useState([]);
     const [user, setUser] = useState(storedUser ? storedUser : null);
 
-    // const [allMovies] = useState(storedMovies ? storedMovies : movies);
-    // const [filteredMovies, setFilteredMovies] = useState([]);
+
 
     console.log(movies)
     console.log(favoriteMoviesList)
     console.log(user)
 
-    //const favoriteMovies = movies.filter((movie) => favoriteMoviesList.includes(movie.id));
-    // let FavoriteMovie = movies.filter(function (movie) {
-    //     return user.FavoriteMovies.includes(movie._id);
-    // });
+    useEffect(() =>
+        async function () {
+            const userJson = JSON.parse(storedUser);
+            console.log('useEffect called', userJson["Username"])
+            const response = await fetch(
+                `https://myflix-20778.herokuapp.com/users/${userJson.Username}`,
+                {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+
+            console.log('response', response)
+
+            const data = await response.json();
+
+            setFavoriteMovie(data.FavoriteMovies);
+        },
+        []
+    );
 
     let printFavoriteMovie;
 
@@ -36,7 +54,9 @@ export const FavoriteMovie = ({ movies, storedUser, favoriteMoviesList, removeMo
         );
     } else {
 
-        printFavoriteMovie = favoriteMovies.map(function (movie) {
+        printFavoriteMovie = movies.filter((movie) => {
+            return favoriteMovies.includes(movie.id);
+        }).map(function (movie) {
             return (
                 <Col xs={6} sm={4} md={2} lg={3} key={movie._id}>
                     <img src={movie.imagepath} />
@@ -49,6 +69,8 @@ export const FavoriteMovie = ({ movies, storedUser, favoriteMoviesList, removeMo
             );
         });
     }
+
+    console.log('printFavoriteMovie', printFavoriteMovie)
     return <>{printFavoriteMovie}</>;
 }
 
