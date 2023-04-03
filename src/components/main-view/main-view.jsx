@@ -6,9 +6,10 @@ import { SignupView } from "../signup-view/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { ProfileView } from "../profile-view/profile-view";
 import Spinner from 'react-bootstrap/Spinner';
+
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, Container } from "react-router-dom";
 import { toast } from 'react-toastify';
 
 export const MainView = () => {
@@ -17,6 +18,7 @@ export const MainView = () => {
     const [user, setUser] = useState(storedUser ? storedUser : null);
     const [token, setToken] = useState(storedToken ? storedToken : null);
     const [movies, setMovies] = useState([]);
+    const [loading, setLoading] = useState(false);
     const [searchInput, setSearchInput] = useState("");
     const [filteredMovies, setFilteredMovies] = useState([]);
     const [userQuery, setUserQuery] = useState('');
@@ -33,8 +35,6 @@ export const MainView = () => {
     };
 
     // Logic to render filteredMovies list
-    // Logic to render filteredMovies list
-
     const onSearch = function (searchInput) {
         setUserQuery(searchInput);
     };
@@ -91,13 +91,13 @@ export const MainView = () => {
                 setUser(updatedUser);
             })
             .catch(function (error) {
-                // if (error.message) {
-                //     toast.error(error.message);
-                // } else {
-                //     toast.error(
-                //         'An error occurred while trying to add movie. Please try again later.'
-                //     );
-                // }
+                if (error.message) {
+                    toast.error(error.message);
+                } else {
+                    toast.error(
+                        'An error occurred while trying to add movie. Please try again later.'
+                    );
+                }
                 console.error('An error occurred:' + error);
             });
     };
@@ -146,10 +146,14 @@ export const MainView = () => {
         if (!token) {
             return;
         }
+        setLoading(true);
+
         fetch("https://myflix-20778.herokuapp.com/movies", {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then((response) => response.json())
+            
+            
             .then((data) => {
 
                 const moviesFromApi = data.map((doc) => {
@@ -288,4 +292,3 @@ export const MainView = () => {
         </BrowserRouter>
     );
 };
-

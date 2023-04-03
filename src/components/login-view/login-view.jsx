@@ -10,10 +10,12 @@ import { toast } from 'react-toastify';
 export const LoginView = ({ onLoggedIn }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = (event) => {
         // this prevents the default behavior of the form which is to reload the entire page
         event.preventDefault();
+        setLoading(true);
 
         const data = {
             Username: username,
@@ -27,10 +29,17 @@ export const LoginView = ({ onLoggedIn }) => {
             },
             body: JSON.stringify(data)
 
-        }).then((response) => response.json())
-            .then((data) => {
-                console.log("Login response: ", data);
-
+        })    // Extracts JWT from response content in JSON format
+      .then(function (response) {
+        setLoading(false);
+        return response.json();
+      })
+      .then(function (data) {
+        if (data.message === 'Incorrect username.') {
+          throw new Error(
+            'No account with that username. Please try again or sign up with a new account.'
+          );
+        }
                 if (data.user) {
                     localStorage.setItem("user", JSON.stringify(data.user));
                     localStorage.setItem("token", data.token);
@@ -71,7 +80,7 @@ export const LoginView = ({ onLoggedIn }) => {
                         />
                     </Form.Group>
                     <div className="align-right mt-3">
-                        {/* {loading ? (
+                        {loading ? (
                             <Button
                                 className="spinner-button"
                                 type="button"
@@ -79,7 +88,7 @@ export const LoginView = ({ onLoggedIn }) => {
                             >
                                 <ButtonSpinner />
                             </Button>
-                        ) : ( */}
+                        ) : (
                         <Button
                             className="spinner-button"
                             type="submit"
@@ -87,7 +96,7 @@ export const LoginView = ({ onLoggedIn }) => {
                         >
                             Submit
                         </Button>
-                        {/* )} */}
+                         )} 
                     </div>
                 </Form>
                 <Link to="/signup">Not registered yet? Sign up here.</Link>
