@@ -1,9 +1,12 @@
 $primary: black;
-$accent: #c6c2b6;
+$accent: rgb(165, 164, 164);
 $primary-darker: #1d2d37;
 
 .navbar {
   background-color: $accent;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 a.logo,
@@ -20,3 +23,4 @@ a.logo:active {
 a.logout-link {
   color: $primary;
 }
+

@@ -9,7 +9,7 @@ import Spinner from 'react-bootstrap/Spinner';
 
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { BrowserRouter, Routes, Route, Navigate, Container } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, Container, Form } from "react-router-dom";
 import { toast } from 'react-toastify';
 
 export const MainView = () => {
@@ -185,10 +185,10 @@ export const MainView = () => {
     const handleSearchInput = (e) => {
         setSearchInput(e.target.value);
     };
+
     return (
         <BrowserRouter>
             <NavigationBar
-
                 user={user}
                 onLoggedOut={() => {
                     setUser(null);
@@ -196,7 +196,7 @@ export const MainView = () => {
                     localStorage.clear();
                 }}
             />
-            <Row className="justify-content-md-center">
+            <Row className="justify-content-md-center mt-5">
                 <Routes>
                     <Route
                         path='/signup'

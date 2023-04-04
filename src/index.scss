@@ -1,4 +1,36 @@
 $primary: #061b2e;
-$body-bg: #f7f7f7;
+$secondary: #d6d6d6;
+$accent: #f7be16;
+
+
+body {
+    background-color: $primary;
+    color: $secondary;
+  }
+  
+  // Cards
+  .card {
+    color: $primary;
+    .card-body {
+      background-color: white;
+    }
+  }
+  
+  // Buttons
+  a.btn-secondary,
+  button.btn-secondary {
+    color: $primary;
+  }
+  
+  //Layout classes
+  .align-right {
+    text-align: right;
+  }
+  .flex-column {
+    display: flex;
+    flex-direction: column;
+  }
+  
+
 
 @import '~bootstrap/scss/bootstrap.scss';

@@ -2,14 +2,15 @@
 import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import './movie-card.scss';
 
 //The movieCard function component
 const MovieCard = ({ movie, isFavMovieCard, removeMovie }) => {
     return (
-        <Card className="h-100">
+        <Card className="card h-100 movie-card">
             <Card.Img variant="top" src={movie.ImagePath} />
             <Card.Body>
-                <Card.Title>{movie.Title}</Card.Title>
+                <Card.Title className="fs-6 fw-bolder">{movie.Title}</Card.Title>
                 <Card.Text> Directed by: {movie.Director.Name}</Card.Text>
                 <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
                     <Button variant="link">More Details</Button>

@@ -7,14 +7,14 @@ import "./navigation-bar.scss";
 export const NavigationBar = ({ user, onLoggedOut, handleSearchInput }) => {
 
   return (
-    <Navbar classname="navbar" collapseOnSelect expand="md" sticky="top">
-      <Container>
+    <Navbar collapseOnSelect expand="md" sticky="top">
+      <Container className="b">
         <Navbar.Brand as={Link} to="/" classname="logo">
           MyFlix
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+          <Nav className="w-100">
             {!user && (
               <>
                 <Nav.Link as={Link} to="/login" className="login button">
@@ -45,7 +45,7 @@ export const NavigationBar = ({ user, onLoggedOut, handleSearchInput }) => {
                 id="search-bar"
                 type="text"
                 placeholder="Search by title"
-                className="mr-sm-2 mx-2 orange-border"
+                className="mr-sm-2 mx-2"
                 onChange={handleSearchInput}
               />
             </Form>
