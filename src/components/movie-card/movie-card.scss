@@ -1,0 +1,28 @@
+.movie-card {
+    .card-header {
+      background-color: rgba(247, 190, 22, 0.85);
+      position: absolute;
+      width: 100%;
+    }
+  }
+  
+  .card-img {
+    height: 100%;
+    width: auto;
+    // Image will be centered and edges will be cropped as necessary
+    object-fit: cover;
+  }
+  
+  .card-title,
+  .card-text {
+    position: relative;
+    overflow: hidden;
+    // So a long text doesn't make the movie card longer
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .card-link-unstyled {
+    text-decoration: none;
+  }
+  

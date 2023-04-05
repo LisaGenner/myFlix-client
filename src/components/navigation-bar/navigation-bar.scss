@@ -1,0 +1,26 @@
+$primary: black;
+$accent: rgb(165, 164, 164);
+$primary-darker: #1d2d37;
+
+.navbar {
+  background-color: $accent;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+a.logo,
+a.logo:visited {
+  color: $primary;
+  font-weight: bold;
+}
+
+a.logo:hover,
+a.logo:active {
+  color: $primary-darker;
+}
+
+a.logout-link {
+  color: $primary;
+}
+

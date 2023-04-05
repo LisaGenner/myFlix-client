@@ -1,33 +1,53 @@
 //Here you import the proptypes library
 import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
-
-
+import { Link } from "react-router-dom";
+import './movie-card.scss';
 
 //The movieCard function component
-export const MovieCard = ({ movie, onMovieClick }) => {
+const MovieCard = ({ movie, isFavMovieCard, removeMovie }) => {
     return (
-        <Card className="h-100">
+        <Card className="card h-100 movie-card">
             <Card.Img variant="top" src={movie.ImagePath} />
             <Card.Body>
-                <Card.Title>{movie.title}</Card.Title>
-                <Card.Text>{movie.director}</Card.Text>
-                <Button onClick={() =>
-                    onMovieClick(movie)} variant="link">
-                    Open
-                </Button>
+                <Card.Title className="fs-6 fw-bolder">{movie.Title}</Card.Title>
+                <Card.Text> Directed by: {movie.Director.Name}</Card.Text>
+                <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
+                    <Button variant="link">More Details</Button>
+                </Link>
+                {isFavMovieCard ? (
+                    <div className="align-right">
+                        <Button
+                            className="btn-secondary"
+                            onClick={function (event) {
+                                event.preventDefault();
+                                removeMovie(movie._id);
+                            }}
+                            size="sm"
+                            variant="secondary"
+                        >
+                            Remove
+                        </Button>
+                    </div>
+                ) : (
+                    false
+                )}
             </Card.Body>
         </Card>
     );
-};
+}
+export { MovieCard };
 
 //Here is where you define all the prop contraints for the moviecard
 
-MovieCard.propTypes = {
-    movie: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        director: PropTypes.string.isRequired
-    }),
-    onMovieClick: PropTypes.func.isRequired
-};
+// MovieCard.propTypes = {
+//     movie: PropTypes.shape({
+//         Title: PropTypes.string,
+//         Genre: PropTypes.string,
+//         Director: PropTypes.string,
+//         Actors: PropTypes.string,
+//         Description: PropTypes.string,
+//         ImagePath: PropTypes.string.isRequired,
+//     })
+//         .isRequired
+// };
