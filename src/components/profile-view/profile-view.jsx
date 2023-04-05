@@ -55,5 +55,3 @@ export const ProfileView = ({ user, movies, removeMovie }) => {
         </Container>
     );
 }
-
-

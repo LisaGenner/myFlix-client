@@ -19,7 +19,7 @@ export const MainView = () => {
     const [token, setToken] = useState(storedToken ? storedToken : null);
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [searchInput, setSearchInput] = useState("");
+    // const [searchInput, setSearchInput] = useState("");
     const [filteredMovies, setFilteredMovies] = useState([]);
     const [userQuery, setUserQuery] = useState('');
     // console.log(user)
@@ -32,11 +32,6 @@ export const MainView = () => {
                 </Spinner>
             </Col>
         );
-    };
-
-    // Logic to render filteredMovies list
-    const onSearch = function (searchInput) {
-        setUserQuery(searchInput);
     };
 
     useEffect(
@@ -118,10 +113,9 @@ export const MainView = () => {
                     );
                 } else if (response.ok) {
                     return response.json();
-                    // get all the movies from local storage then remove the movie id that is coming up in the response.  then update local storag
+                    // get all the movies from local storage then remove the movie id that is coming up in the response.  then update local storage
                     // const storedUser = JSON.parse(localStorage.getItem("user"));
                     // console.log(storedUser.FavoriteMovies)
-
                 }
             })
             .then(function (updatedUser) {

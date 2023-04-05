@@ -10,25 +10,6 @@ export const FavoriteMovie = ({
     const favoriteMovies = movies.filter((m) =>
         favoriteMoviesList.includes(m._id)
     );
-
-
-    //   <Row>
-    //                         {favoriteMoviesList.map((movie) => {
-    //                             return (
-    //                                 <Col xs={6} sm={4} md={2} lg={3} key={movie._id}>
-
-
-    //                                     <img src={movie.imagepath} />
-    //                                     <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
-    //                                         <h4>{movie.Title}</h4>
-    //                                     </Link>
-    //                                     <Button variant="secondary" onClick={() => removeFav(movie._id)}>Remove from list</Button>
-    //                                 </Col>
-    //                             )
-    //                         })
-    //                         }
-    //                     </Row >
-
     //     console.log(movies)
     console.log(favoriteMovies)
     //     console.log(user)
