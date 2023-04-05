@@ -22,7 +22,7 @@ export const MainView = () => {
     const [searchInput, setSearchInput] = useState("");
     const [filteredMovies, setFilteredMovies] = useState([]);
     const [userQuery, setUserQuery] = useState('');
-    console.log(user)
+    // console.log(user)
 
     const showSpinner = function () {
         return (
@@ -117,15 +117,11 @@ export const MainView = () => {
                         "Sorry, you're not authorized to access this resource. "
                     );
                 } else if (response.ok) {
+                    return response.json();
                     // get all the movies from local storage then remove the movie id that is coming up in the response.  then update local storag
-                    const storedUser = JSON.parse(localStorage.getItem("user"));
-                    console.log(storedUser.FavoriteMovies)
-                    // const updatedMovieList = storedUser.filter((favMov) => {
-                    //     console.log(favMov)
-                    //     favMov._id !== movieId
-                    // });
-                    // console.log(updatedMovieList);
-                    // return response.json();
+                    // const storedUser = JSON.parse(localStorage.getItem("user"));
+                    // console.log(storedUser.FavoriteMovies)
+
                 }
             })
             .then(function (updatedUser) {
@@ -177,13 +173,17 @@ export const MainView = () => {
                 });
 
                 setMovies(data);
-                localStorage.setItem("movies", JSON.stringify(moviesFromApi))
+                // localStorage.setItem("movies", JSON.stringify(moviesFromApi))
             });
     }, [token]);
 
     // Handle changes in the search input field
     const handleSearchInput = (e) => {
-        setSearchInput(e.target.value);
+        console.log(e.target.value)
+        const searchWord = e.target.value;
+        const allMovies = movies
+        //get all the stored movies from the objective
+        // setSearchInput(e.target.value);
     };
 
     return (
@@ -195,8 +195,9 @@ export const MainView = () => {
                     setToken(null);
                     localStorage.clear();
                 }}
+                handleSearchInput={handleSearchInput}
             />
-            <Row className="justify-content-md-center mt-5">
+            <Row className="justify-content-md-center mt-5 main-body-container">
                 <Routes>
                     <Route
                         path='/signup'
