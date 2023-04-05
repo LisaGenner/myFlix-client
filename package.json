@@ -28,6 +28,7 @@
     "react-scripts": "^5.0.1",
     "redux": "^4.2.1",
     "@anatoliygatt/heart-switch": "^1.0.12"
+    
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.8.3",
