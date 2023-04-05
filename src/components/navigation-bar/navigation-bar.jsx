@@ -1,14 +1,16 @@
 import { PropTypes } from "prop-types";
 import { Navbar, Container, Nav } from "react-bootstrap";
+import { useSelector, useDispatch } from "react";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import "./navigation-bar.scss";
 
 export const NavigationBar = ({ user, onLoggedOut, handleSearchInput }) => {
 
+
   return (
     <Navbar collapseOnSelect expand="md" sticky="top">
-      <Container className="b">
+      <Container>
         <Navbar.Brand as={Link} to="/" classname="logo">
           MyFlix
         </Navbar.Brand>
