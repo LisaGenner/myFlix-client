@@ -2,6 +2,7 @@
 import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { MoviesFilter } from "../moviesFilter/movies-filter"
 import './movie-card.scss';
 
 //The movieCard function component
