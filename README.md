@@ -34,7 +34,7 @@ The application includes Bootstrap as a UI library for styling and responsivenes
 
 The application contains function components 
 
-The application is hosted online 
+The application is hosted online. See Demo using this link:  https://myflix-20778.netlify.app/
 
   
 
