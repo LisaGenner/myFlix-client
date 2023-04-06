@@ -19,11 +19,8 @@ export const MainView = () => {
     const [token, setToken] = useState(storedToken ? storedToken : null);
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(false);
-    // const [searchInput, setSearchInput] = useState("");
     const [filteredMovies, setFilteredMovies] = useState([]);
     const [userQuery, setUserQuery] = useState('');
-    // console.log(user)
-
     const showSpinner = function () {
         return (
             <Col className="spinner-wrapper">
@@ -34,30 +31,7 @@ export const MainView = () => {
         );
     };
 
-    useEffect(
-        function () {
-            if (!userQuery) {
-                setFilteredMovies([]);
-            } else {
-                let searchResult = movies.filter(function (movie) {
-                    const movieLowerCase = movie.Title.toLowerCase();
-                    const directorLowerCase = movie.Director.Name.toLowerCase();
-                    const genreLowerCase = movie.Genre.Name.toLowerCase();
-                    const userQueryLowerCase = userQuery.toLowerCase();
-
-                    return (
-                        movieLowerCase.includes(userQueryLowerCase) ||
-                        directorLowerCase.includes(userQueryLowerCase) ||
-                        genreLowerCase.includes(userQueryLowerCase)
-                    );
-                });
-                setFilteredMovies(searchResult);
-            }
-        },
-        [movies, userQuery]
-    );
-
-    // Logic to manage FavoriteMovies list (needed in both ProfileView and MovieCard)
+       // Logic to manage FavoriteMovies list (needed in both ProfileView and MovieCard)
     const addMovie = function (movieId) {
         fetch(
             `https://myflix-20778.herokuapp.com/users/${user.Username}/movies/${movieId}`,
@@ -154,30 +128,32 @@ export const MainView = () => {
 
             .then((data) => {
 
-                const moviesFromApi = data.map((doc) => {
-                    const actors = doc.Actors
-                    return {
-                        id: doc._id,
-                        title: doc.Title,
-                        imagepath: doc.ImagePath,
-                        director: doc.Director.Name,
-                        actors: actors,
-                        genre: doc.genre
-                    };
-                });
+                // const moviesFromApi = data.map((doc) => {
+                //     const actors = doc.Actors
+                //     return {
+                //         id: doc._id,
+                //         title: doc.Title,
+                //         imagepath: doc.ImagePath,
+                //         director: doc.Director.Name,
+                //         actors: actors,
+                //         genre: doc.genre
+                //     };
+                // });
 
                 setMovies(data);
                 // localStorage.setItem("movies", JSON.stringify(moviesFromApi))
             });
     }, [token]);
 
+    useEffect(() => {
+        setFilteredMovies(movies)
+    }, [movies])
+
     // Handle changes in the search input field
     const handleSearchInput = (e) => {
-        console.log(e.target.value)
-        const searchWord = e.target.value;
-        const allMovies = movies
-        //get all the stored movies from the objective
-        // setSearchInput(e.target.value);
+        const searchWord = e.target.value.toLowerCase();
+        let tempArray = movies.filter(m => m.Title.toLowerCase().includes(searchWord))
+        setFilteredMovies(tempArray)
     };
 
     return (
@@ -273,7 +249,7 @@ export const MainView = () => {
                                     <div>The list is empty!</div>
                                 ) : (
                                     <>
-                                        {movies.map((movie) => (
+                                        {filteredMovies.map((movie) => (
                                             <Col className="mb-5" key={movie.id} md={3}>
                                                 <MovieCard movie={movie} />
                                             </Col>
