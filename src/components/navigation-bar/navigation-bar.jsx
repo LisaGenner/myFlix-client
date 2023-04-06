@@ -7,7 +7,6 @@ import "./navigation-bar.scss";
 
 export const NavigationBar = ({ user, onLoggedOut, handleSearchInput }) => {
 
-
   return (
     <Navbar collapseOnSelect expand="md" sticky="top">
       <Container>

@@ -41,14 +41,14 @@ export { MovieCard };
 
 //Here is where you define all the prop contraints for the moviecard
 
-// MovieCard.propTypes = {
-//     movie: PropTypes.shape({
-//         Title: PropTypes.string,
-//         Genre: PropTypes.string,
-//         Director: PropTypes.string,
-//         Actors: PropTypes.string,
-//         Description: PropTypes.string,
-//         ImagePath: PropTypes.string.isRequired,
-//     })
-//         .isRequired
-// };
+MovieCard.propTypes = {
+    movie: PropTypes.shape({
+        Title: PropTypes.string,
+        Genre: PropTypes.string,
+        Director: PropTypes.string,
+        Actors: PropTypes.string,
+        Description: PropTypes.string,
+        ImagePath: PropTypes.string.isRequired,
+    })
+        .isRequired
+};
