@@ -22,9 +22,7 @@ export const FavoriteMovie = ({
                     className="d-flex justify-content-between align-items-center"
                 >
                     <div>
-                        {/* {m.Title} */}
                         <img src={m.ImagePath} />
-                        {/* <Link to={`/movies/${encodeURIComponent(m._id)}`}> */}
                     </div>
                     <div>
                         <button onClick={() => removeMovie(m._id)}>
@@ -39,11 +37,3 @@ export const FavoriteMovie = ({
         </ListGroup>
     );
 };
-
-// import { PropTypes } from 'prop-types';
-// import { useState, useEffect } from "react";
-// import { Button, Col, Card, Link, Row, Container } from "react-bootstrap";
-// import { MovieCard } from "../movie-card/movie-card";
-// import { ProfileView } from "../profile-view/profile-view";
-// import { FavoriteMovie } from "./favorite-movies";
-// import { Link } from "react-router-dom";

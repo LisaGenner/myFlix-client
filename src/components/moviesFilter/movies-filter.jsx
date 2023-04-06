@@ -15,5 +15,4 @@ export const MoviesFilter = () => {
         onChange= { (e) => dispatch(setFilter(e.target.value))}
         />
     )
-
 }
