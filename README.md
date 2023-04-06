@@ -4,19 +4,19 @@ myFlix is a client-side application built with react.js, react-bootstrap for sty
 
 # Application
 
-login and registration with validation 
+1.  login and registration with validation 
 
-display a list of movies that are stored in redux stores 
+2.  display a list of movies that are stored in redux stores 
 
-Users can click and find the details about the movie 
+3.  Users can click and find the details about the movie 
 
-Users can search for a movie 
+4.  Users can search for a movie 
 
-Users can update their information 
+5.  Users can update their information 
 
-Users can delete their accounts 
+6.  Users can delete their accounts 
 
-Users can add/remove a movie from their favorite movies list 
+7.  Users can add/remove a movie from their favorite movies list 
 
 # Technical Requirements 
 
