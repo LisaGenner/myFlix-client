@@ -18,7 +18,7 @@ Users can delete their accounts
 
 Users can add/remove a movie from their favorite movies list 
 
-#Technical Requirements 
+# Technical Requirements 
 
 The application uses a single-page application (SPA) 
 
