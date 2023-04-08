@@ -11,12 +11,9 @@ import { HeartSwitch } from '@anatoliygatt/heart-switch';
 export const MovieView = ({ addMovie, movies, removeMovie, FavoriteMovies, handleFavorite }) => {
     const { movieId } = useParams();
     const movie = movies.find((movie) => movie._id === movieId);
-    // console.log(movies)
     const user = JSON.parse(localStorage.getItem("user"));
     const token = localStorage.getItem("token");
     const [favoriteMovies, setFavoriteMovies] = useState(user.FavoriteMovies ? user.FavoriteMovies : []);
-
-    console.log(FavoriteMovies)
 
     //Checking if movie is already in user's top movies and setting Liked state, then handling heart switch toggle
     let isLiked = FavoriteMovies.includes(movieId);

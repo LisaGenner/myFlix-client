@@ -41,7 +41,6 @@ export const ProfileView = ({ user, movies, removeMovie }) => {
                     <Card>
                         <Card.Body>
                             <h3>Favorite Movies:</h3>
-
                             <FavoriteMovie
                                 movies={movies}
                                 user={user}

@@ -51,7 +51,6 @@ export const LoginView = ({ onLoggedIn }) => {
             .catch((e) => {
                 alert("Something went wrong");
             });
-
     };
     return (
         <Card className="card mb-4">

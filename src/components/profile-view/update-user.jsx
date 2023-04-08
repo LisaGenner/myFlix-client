@@ -7,9 +7,7 @@ export const UpdateUser = ({ user }) => {
     const storedToken = localStorage.getItem("token");
     const storedMovie = JSON.parse(localStorage.getItem("movies"))
     const storedUser = localStorage.getItem("user");
-
     const [token] = useState(storedToken ? storedToken : null);
-
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
@@ -105,7 +103,6 @@ export const UpdateUser = ({ user }) => {
                 <Button type="submit" className="button-primary mt-3">Update</Button>
                 {/* <Button onClick={() => handleDeregister(user._id)} className="button-delete mt-3" type="submit" variant="danger" >Delete Account</Button> */}
             </Form>
-
         </>
     )
 }

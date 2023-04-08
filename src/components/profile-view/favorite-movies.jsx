@@ -10,9 +10,6 @@ export const FavoriteMovie = ({
     const favoriteMovies = movies.filter((m) =>
         favoriteMoviesList.includes(m._id)
     );
-    //     console.log(movies)
-    console.log(favoriteMovies)
-    //     console.log(user)
 
     return (
         <ListGroup>
