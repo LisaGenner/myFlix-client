@@ -31,7 +31,7 @@ export const MainView = () => {
         );
     };
 
-       // Logic to manage FavoriteMovies list (needed in both ProfileView and MovieCard)
+    // Logic to manage FavoriteMovies list (needed in both ProfileView and MovieCard)
     const addMovie = function (movieId) {
         fetch(
             `https://myflix-20778.herokuapp.com/users/${user.Username}/movies/${movieId}`,
@@ -87,9 +87,6 @@ export const MainView = () => {
                     );
                 } else if (response.ok) {
                     return response.json();
-                    // get all the movies from local storage then remove the movie id that is coming up in the response.  then update local storage
-                    // const storedUser = JSON.parse(localStorage.getItem("user"));
-                    // console.log(storedUser.FavoriteMovies)
                 }
             })
             .then(function (updatedUser) {
@@ -127,21 +124,7 @@ export const MainView = () => {
 
 
             .then((data) => {
-
-                // const moviesFromApi = data.map((doc) => {
-                //     const actors = doc.Actors
-                //     return {
-                //         id: doc._id,
-                //         title: doc.Title,
-                //         imagepath: doc.ImagePath,
-                //         director: doc.Director.Name,
-                //         actors: actors,
-                //         genre: doc.genre
-                //     };
-                // });
-
                 setMovies(data);
-                // localStorage.setItem("movies", JSON.stringify(moviesFromApi))
             });
     }, [token]);
 
