@@ -13,7 +13,7 @@ const MovieCard = ({ movie, isFavMovieCard, removeMovie }) => {
                 <Card.Title className="fs-6 fw-bolder">{movie.Title}</Card.Title>
                 <Card.Text> Directed by: {movie.Director.Name}</Card.Text>
                 <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
-                    <Button variant="link">More Details</Button>
+                    <Button variant="link">View Movie Info</Button>
                 </Link>
                 {isFavMovieCard ? (
                     <div className="align-right">
