@@ -1,12 +1,9 @@
-import { PropTypes } from "prop-types";
 import { Navbar, Container, Nav } from "react-bootstrap";
-import { useSelector, useDispatch } from "react";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import "./navigation-bar.scss";
 
 export const NavigationBar = ({ user, onLoggedOut, handleSearchInput }) => {
-
   return (
     <Navbar collapseOnSelect expand="md" sticky="top">
       <Container>
@@ -40,7 +37,7 @@ export const NavigationBar = ({ user, onLoggedOut, handleSearchInput }) => {
           </Nav>
           {/* If a user is logged in then display search bar */}
           {user && (
-            <Form >
+            <Form>
               {/*Input field for searching */}
               <Form.Control
                 id="search-bar"
