@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import "./navigation-bar.scss";
 
+/**navbar details */
 export const NavigationBar = ({ user, onLoggedOut, handleSearchInput }) => {
   return (
     <Navbar collapseOnSelect expand="md" sticky="top">

@@ -18,7 +18,7 @@ import {
   Form,
 } from "react-router-dom";
 import { toast } from "react-toastify";
-
+/** function creates main screen of app*/
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
