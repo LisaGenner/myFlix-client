@@ -1,51 +1,50 @@
+//colors
 $primary: #061b2e;
 $secondary: #d6d6d6;
 $accent: #f7be16;
 
-
 body {
-    background-color: $primary;
-    color: $secondary;
+  background-color: $primary;
+  color: $secondary;
 
-    .container {
-        max-width: 100%;
-        padding: 0;
-    }
+  .container {
+    max-width: 100%;
+    padding: 0;
+  }
 }
 
 // Cards
 .card {
-    color: $primary;
+  color: $primary;
 
-    .card-body {
-        background-color: white;
-    }
+  .card-body {
+    background-color: white;
+  }
 }
 
 // Buttons
 a.btn-secondary,
 button.btn-secondary {
-    color: $primary;
+  color: $primary;
 }
 
 //Layout classes
 .align-right {
-    text-align: right;
+  text-align: right;
 }
 
 .flex-column {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .navbar {
-    padding: 5px 25px !important;
+  padding: 5px 25px !important;
 }
 
 .main-body-container {
-    width: 1320px;
-    margin: 0 auto !important;
-
+  width: 1320px;
+  margin: 0 auto !important;
 }
 
-@import '~bootstrap/scss/bootstrap.scss';
+@import "~bootstrap/scss/bootstrap.scss";

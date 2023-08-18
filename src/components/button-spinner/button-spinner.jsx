@@ -1,4 +1,4 @@
-import Spinner from 'react-bootstrap/Spinner';
+import Spinner from "react-bootstrap/Spinner";
 
 const ButtonSpinner = function () {
   return (
